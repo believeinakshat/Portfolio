@@ -1,0 +1,335 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-dark-900 dark:text-light-100;
+  }
+  
+  /* Theme transition */
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition: all 0.5s ease-in-out !important;
+  }
+  
+  /* Prevent horizontal scroll */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/10 dark:bg-dark-500/10 backdrop-blur-lg border border-white/20 dark:border-dark-600/20 shadow-glass;
+  }
+  
+  .section-title {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-secondary-800 dark:text-secondary-300;
+  }
+  
+  .section-subtitle {
+    @apply text-lg sm:text-xl md:text-2xl font-medium mb-6 sm:mb-8 text-dark-600 dark:text-light-300 max-w-3xl mx-auto px-4;
+  }
+  
+  .btn {
+    @apply px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 text-sm sm:text-base;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary-600 hover:bg-secondary-700 text-white focus:ring-secondary-500;
+  }
+  
+  .btn-accent {
+    @apply btn bg-accent-600 hover:bg-accent-700 text-white focus:ring-accent-500;
+  }
+  
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16;
+  }
+}
+
+.skill-card {
+  @apply relative p-4 sm:p-5 rounded-xl glass transition-all duration-300 transform hover:scale-105 hover:shadow-xl;
+}
+
+.skill-card::before {
+  content: '';
+  @apply absolute inset-0 rounded-xl bg-gradient-to-br from-primary-400/30 to-secondary-500/30 opacity-0 transition-opacity duration-300;
+}
+
+.skill-card:hover::before {
+  @apply opacity-100;
+}
+
+.project-card {
+  @apply relative overflow-hidden rounded-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl;
+}
+
+.nav-item {
+  @apply relative font-medium text-dark-800 dark:text-light-200 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-300;
+}
+
+.nav-item::after {
+  content: '';
+  @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary-500 transition-all duration-300;
+}
+
+.nav-item:hover::after {
+  @apply w-full;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-light-300 dark:bg-dark-700;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-400 dark:bg-primary-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-500 dark:bg-primary-700;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .section-container {
+    @apply px-4 py-6;
+  }
+  
+  .glass {
+    @apply bg-white/20 dark:bg-dark-500/20;
+  }
+}
+
+/* Prevent text selection on interactive elements */
+button, .btn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Ensure proper touch targets on mobile */
+@media (max-width: 768px) {
+  button, .btn, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-dark-900 dark:text-light-100;
+  }
+  
+  /* Enhanced slower theme transition */
+  html {
+    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .theme-transition,
+  .theme-transition *,
+  .theme-transition *::before,
+  .theme-transition *::after {
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
+  }
+  
+  /* Prevent horizontal scroll */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Global transition for theme-aware elements - slower and smoother */
+  * {
+    transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                fill 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                stroke 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                backdrop-filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/10 dark:bg-dark-500/10 backdrop-blur-lg border border-white/20 dark:border-dark-600/20 shadow-glass;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .section-title {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-secondary-800 dark:text-secondary-300;
+    transition: color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .section-subtitle {
+    @apply text-lg sm:text-xl md:text-2xl font-medium mb-4 sm:mb-6 text-dark-600 dark:text-light-300 max-w-3xl mx-auto px-4;
+    transition: color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .btn {
+    @apply px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 text-sm sm:text-base;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 hover:bg-primary-700 text-white focus:ring-primary-500;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary-600 hover:bg-secondary-700 text-white focus:ring-secondary-500;
+  }
+  
+  .btn-accent {
+    @apply btn bg-accent-600 hover:bg-accent-700 text-white focus:ring-accent-500;
+  }
+  
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10;
+  }
+}
+
+.skill-card {
+  @apply relative p-4 sm:p-5 rounded-xl glass transition-all duration-300 transform hover:scale-105 hover:shadow-xl;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.skill-card::before {
+  content: '';
+  @apply absolute inset-0 rounded-xl bg-gradient-to-br from-primary-400/30 to-secondary-500/30 opacity-0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-card:hover::before {
+  @apply opacity-100;
+}
+
+.project-card {
+  @apply relative overflow-hidden rounded-2xl transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-item {
+  @apply relative font-medium text-dark-800 dark:text-light-200 hover:text-primary-600 dark:hover:text-primary-400;
+  transition: color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-item::after {
+  content: '';
+  @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary-500;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item:hover::after {
+  @apply w-full;
+}
+
+/* Scrollbar styling with smooth transitions */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-light-300 dark:bg-dark-700;
+  transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-400 dark:bg-primary-600 rounded-full;
+  transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-500 dark:bg-primary-700;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .section-container {
+    @apply px-4 py-4;
+  }
+  
+  .glass {
+    @apply bg-white/20 dark:bg-dark-500/20;
+  }
+}
+
+/* Prevent text selection on interactive elements */
+button, .btn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Ensure proper touch targets on mobile */
+@media (max-width: 768px) {
+  button, .btn, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Enhanced transitions for specific elements */
+section {
+  transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+header {
+  transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              backdrop-filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+footer {
+  transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Form elements smooth transitions */
+input, textarea, select {
+  transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card and container transitions */
+.glass, [class*="bg-"], [class*="border-"] {
+  transition: background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              backdrop-filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
