@@ -34,36 +34,36 @@ const ProjectsSection: React.FC = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="project-card"
+              className="project-card bg-white dark:bg-dark-700 rounded-xl shadow-lg overflow-hidden"
               onMouseEnter={() => setActiveProject(project.id)}
               onMouseLeave={() => setActiveProject(null)}
             >
-              <div className="group relative overflow-hidden rounded-xl">
+              <div className="group relative overflow-hidden">
                 {/* Project image */}
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-48 sm:h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 
-                {/* Overlay on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-800/70 to-transparent transition-opacity duration-300 ${
+                {/* Overlay on hover - Hidden on mobile */}
+                <div className={`hidden md:block absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-800/70 to-transparent transition-opacity duration-300 ${
                   activeProject === project.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
                 }`}>
-                  <div className="absolute bottom-0 left-0 right-0 p-6 transform transition-transform duration-500 translate-y-2 group-hover:translate-y-0">
-                    <h3 className="text-xl font-bold text-light-100 mb-2">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6 transform transition-transform duration-500 translate-y-2 group-hover:translate-y-0">
+                    <h3 className="text-lg lg:text-xl font-bold text-light-100 mb-2">
                       {project.title}
                     </h3>
                     
-                    <div className="text-light-300 mb-4">
+                    <div className="text-light-300 mb-3 text-sm lg:text-base">
                       {project.description.map((item, idx) => (
-                        <p key={idx} className="mb-1 text-sm">
+                        <p key={idx} className="mb-1 text-xs lg:text-sm">
                           • {item}
                         </p>
                       ))}
                     </div>
                     
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-1 lg:gap-2 mb-3 lg:mb-4">
                       {project.technologies.map((tech, techIndex) => (
                         <span
                           key={techIndex}
@@ -74,15 +74,15 @@ const ProjectsSection: React.FC = () => {
                       ))}
                     </div>
                     
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-3 lg:space-x-4">
                       {project.github && (
                         <a
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center text-light-100 hover:text-primary-400 transition-colors"
+                          className="flex items-center text-light-100 hover:text-primary-400 transition-colors text-sm lg:text-base"
                         >
-                          <Github className="w-5 h-5 mr-1" />
+                          <Github className="w-4 h-4 lg:w-5 lg:h-5 mr-1" />
                           <span>Code</span>
                         </a>
                       )}
@@ -92,9 +92,9 @@ const ProjectsSection: React.FC = () => {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center text-light-100 hover:text-primary-400 transition-colors"
+                          className="flex items-center text-light-100 hover:text-primary-400 transition-colors text-sm lg:text-base"
                         >
-                          <ExternalLink className="w-5 h-5 mr-1" />
+                          <ExternalLink className="w-4 h-4 lg:w-5 lg:h-5 mr-1" />
                           <span>Live Demo</span>
                         </a>
                       )}
@@ -103,14 +103,23 @@ const ProjectsSection: React.FC = () => {
                 </div>
               </div>
               
-              {/* Visible title for mobile/accessibility */}
-              <div className="p-4 bg-white dark:bg-dark-700 shadow-md md:hidden">
+              {/* Mobile content - Always visible */}
+              <div className="p-4 md:p-6">
                 <h3 className="text-xl font-bold text-dark-800 dark:text-light-100">
                   {project.title}
                 </h3>
                 
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {project.technologies.slice(0, 3).map((tech, techIndex) => (
+                {/* Mobile description */}
+                <div className="mt-3 mb-4 md:hidden">
+                  {project.description.map((item, idx) => (
+                    <p key={idx} className="mb-1 text-sm text-dark-600 dark:text-light-300">
+                      • {item}
+                    </p>
+                  ))}
+                </div>
+                
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
                       className="px-2 py-1 text-xs font-medium rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-300"
@@ -118,10 +127,32 @@ const ProjectsSection: React.FC = () => {
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 3 && (
-                    <span className="px-2 py-1 text-xs font-medium rounded-full bg-secondary-100 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-300">
-                      +{project.technologies.length - 3} more
-                    </span>
+                </div>
+                
+                {/* Mobile links */}
+                <div className="flex space-x-4 mt-4 md:hidden">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors text-sm"
+                    >
+                      <Github className="w-4 h-4 mr-1" />
+                      <span>View Code</span>
+                    </a>
+                  )}
+                  
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors text-sm"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-1" />
+                      <span>Live Demo</span>
+                    </a>
                   )}
                 </div>
               </div>

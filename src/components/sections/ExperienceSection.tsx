@@ -32,12 +32,12 @@ const ExperienceSection: React.FC = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative flex flex-col sm:flex-row ${
+              className={`relative flex flex-col sm:flex-row pl-8 sm:pl-0 ${
                 index % 2 === 0 ? 'sm:flex-row-reverse' : ''
               }`}
             >
               {/* Timeline dot */}
-              <div className="absolute left-0 sm:left-1/2 top-0 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 border-4 border-primary-500 dark:border-primary-600 transform -translate-x-1/2 z-10" />
+              <div className="absolute left-0 sm:left-1/2 top-6 w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-primary-500 dark:bg-primary-600 border-2 border-white dark:border-dark-700 transform -translate-x-1/2 z-10 shadow-md" />
               
               {/* Content box */}
               <div className={`sm:w-1/2 pb-12 sm:pb-0 ${
@@ -45,11 +45,11 @@ const ExperienceSection: React.FC = () => {
                   ? 'sm:pl-16 sm:pr-8' 
                   : 'sm:pr-16 sm:pl-8'
               }`}>
-                <div className="glass p-6 rounded-xl">
+                <div className="glass p-4 sm:p-6 rounded-xl">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
                     <div className="flex items-center mb-2 sm:mb-0">
                       <BriefcaseBusiness className="w-5 h-5 text-primary-600 dark:text-primary-400 mr-2" />
-                      <h3 className="text-xl font-bold text-dark-800 dark:text-light-100">{experience.position}</h3>
+                      <h3 className="text-lg sm:text-xl font-bold text-dark-800 dark:text-light-100">{experience.position}</h3>
                     </div>
                     <div className="flex items-center">
                       <Calendar className="w-4 h-4 text-dark-500 dark:text-light-400 mr-2" />
@@ -57,7 +57,7 @@ const ExperienceSection: React.FC = () => {
                     </div>
                   </div>
                   
-                  <p className="text-lg font-medium text-primary-600 dark:text-primary-400 mb-3">
+                  <p className="text-base sm:text-lg font-medium text-primary-600 dark:text-primary-400 mb-3">
                     {experience.company}
                   </p>
                   
@@ -65,7 +65,7 @@ const ExperienceSection: React.FC = () => {
                     {experience.description.map((item, idx) => (
                       <li key={idx} className="flex items-start">
                         <span className="inline-block w-1.5 h-1.5 rounded-full bg-secondary-500 dark:bg-secondary-400 mt-2 mr-2"></span>
-                        <span className="text-dark-700 dark:text-light-300">{item}</span>
+                        <span className="text-sm sm:text-base text-dark-700 dark:text-light-300">{item}</span>
                       </li>
                     ))}
                   </ul>
